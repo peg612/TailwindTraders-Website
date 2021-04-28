@@ -17,3 +17,14 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: ServiceNow-DevOps-Agent-Job-Notification@1
+  inputs:
+    connectedServiceName: 'DevOps Connection'
+    Phase: 'STARTED'
+    - task: ServiceNow-DevOps-Server-Change-Acceleration@1
+      inputs:
+        connectedServiceName: 'DevOps Connection'
+        changeRequestDetails: 'This is a change from Azure'
+    - task: ServiceNow-DevOps-Agent-Job-Notification@1
+      inputs:
+        Phase: 'COMPLETED'
